@@ -29,7 +29,6 @@ function App() {
     <>
       <boardContext.Provider value={boardData}>
         <Navbar></Navbar>
-        <AddButton></AddButton>
         <Board></Board>
         <AddForm></AddForm>
       </boardContext.Provider>
