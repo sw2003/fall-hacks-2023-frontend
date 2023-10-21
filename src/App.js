@@ -28,9 +28,9 @@ function App() {
   return (
     <>
       <boardContext.Provider value={boardData}>
+        <Navbar></Navbar>
         <AddButton></AddButton>
         <Board></Board>
-        <Navbar></Navbar>
         <AddForm></AddForm>
       </boardContext.Provider>
     </>
