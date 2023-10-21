@@ -1,13 +1,17 @@
 import AddButton from "./add_button"
 import Avatar from "../assets/avatar.png"
+import Logo from "../assets/logo.png"
 
 export default function Navbar(){
     return (
-        <nav className="lg:bg-white lg:w-screen lg:h-14 shadow-sm lg:px-16 lg:py-3 flex justify-items-center items-center  w-full justify-between border-2">
+        <nav className="lg:bg-white lg:w-screen lg:h-20  shadow-sm lg:px-16 lg:py-3 flex justify-items-center items-center w-full justify-between border-2">
     
-            {/* <img src={logo} alt='logo'  className="lg:h-10 lg:pr-3 h-10 pr-4 pl-2 mt-2"/> */}
+            <img src={Logo} alt='logo'  className="lg:h-14 lg:pr-3 h-10 pr-4 pl-2 mt-2"/>
     
             <h1 className="font-poppins font-bold text-sm lg:text-xl mt-2 mb-2">Fall Hacks 2023</h1>
+            <h1 className="font-poppins font-bold text-sm lg:text-xl mt-2 mb-2"></h1>
+            <h1 className="font-poppins font-bold text-sm lg:text-xl mt-2 mb-2"></h1>
+            <h1 className="font-poppins font-bold text-sm lg:text-xl mt-2 mb-2"></h1>
             <h1 className="font-poppins font-bold text-sm lg:text-xl mt-2 mb-2"></h1>
             <h1 className="font-poppins font-bold text-sm lg:text-xl mt-2 mb-2"></h1>
             <h1 className="font-poppins font-bold text-sm lg:text-xl mt-2 mb-2"></h1>
@@ -32,6 +36,7 @@ export default function Navbar(){
                 <button type="button" className="flex mr-3 text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600" id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown" data-dropdown-placement="bottom">
                     <span className="sr-only">Open user menu</span>
                     <img className="w-8 h-8 rounded-full" src={Avatar} alt="user photo"></img>
+
                 </button>
             </div>
 
