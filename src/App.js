@@ -29,9 +29,9 @@ function App() {
   return (
     <>
       <boardContext.Provider>
+        <Navbar></Navbar>
         <AddButton></AddButton>
         <Board></Board>
-        <Navbar></Navbar>
       </boardContext.Provider>
     </>
   );
