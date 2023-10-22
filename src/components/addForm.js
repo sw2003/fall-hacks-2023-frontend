@@ -58,9 +58,13 @@ export default function AddForm() {
         if (insightStatus === 'To Improve'){colID = 1;}
         if (insightStatus === 'Action Items'){colID = 2;}
 
-        axios
+        try {
+            axios
             .post(`/1/${colID}/`, content)
-            .then((res) => window.location.href='/')
+            .then((res) => window.location.href='/')  
+        } catch (error) {
+            
+        }
     }
 
     return (

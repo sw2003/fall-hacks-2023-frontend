@@ -137,9 +137,13 @@ export default function Board() {
     })
 
     const thumbsup = (task_id) => {
-        axios
+        try {
+            axios
             .put(`/task/${task_id}/add_thumbup`)
-            .then((res) => window.location.href = '/')
+            .then((res) => window.location.href = '/') 
+        } catch (error) {
+            
+        }
     }
 
     const showComment = (task_id) => {
