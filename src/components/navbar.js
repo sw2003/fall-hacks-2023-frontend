@@ -8,7 +8,7 @@ export default function Navbar(){
     
             <img src={Logo} alt='logo'  className="lg:h-14 lg:pr-3 h-10 pr-4 pl-2 mt-2"/>
     
-            <h1 className="font-poppins font-bold text-sm lg:text-xl mt-2 mb-2">Fall Hacks 2023</h1>
+            <h1 className="font-poppins font-bold text-sm lg:text-xl mt-2 mb-2">New Leaf Retro</h1>
             <h1 className="font-poppins font-bold text-sm lg:text-xl mt-2 mb-2"></h1>
             <h1 className="font-poppins font-bold text-sm lg:text-xl mt-2 mb-2"></h1>
             <h1 className="font-poppins font-bold text-sm lg:text-xl mt-2 mb-2"></h1>

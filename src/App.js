@@ -5,6 +5,8 @@ import Board from "./components/board";
 import Navbar from "./components/navbar";
 import AddForm from './components/addForm';
 
+import './App.css';
+
 const boardContext = createContext(null);
 
 function App() {
@@ -26,14 +28,13 @@ function App() {
   ])
 
   return (
-    <>
+    <div className="background">
       <boardContext.Provider value={boardData}>
-        <Navbar></Navbar>
-        <AddButton></AddButton>
-        <Board></Board>
-        <AddForm></AddForm>
+          <Navbar></Navbar>
+          <Board></Board>
+          <AddForm></AddForm>
       </boardContext.Provider>
-    </>
+    </div>
   );
 }
 
