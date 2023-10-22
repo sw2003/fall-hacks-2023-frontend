@@ -5,7 +5,7 @@ import Board from "./components/board";
 import Navbar from "./components/navbar";
 import AddForm from './components/addForm';
 
-const boardContext = createContext(null);
+export const boardContext = createContext(null);
 
 function App() {
   const [ boardData, setBoardData ] = useState([
@@ -25,12 +25,14 @@ function App() {
     ]
   ])
 
+  const [createWindow, setCreateWindow] = useState(false); 
+
   return (
     <>
-      <boardContext.Provider value={boardData}>
+      <boardContext.Provider value={[boardData, createWindow, setCreateWindow]}>
+        <AddForm></AddForm>
         <Navbar></Navbar>
         <Board></Board>
-        <AddForm></AddForm>
       </boardContext.Provider>
     </>
   );
