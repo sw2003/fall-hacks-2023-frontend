@@ -30,9 +30,9 @@ function App() {
   return (
     <div className="background">
       <boardContext.Provider value={boardData}>
-          <Navbar></Navbar>
-          <Board></Board>
-          <AddForm></AddForm>
+        <AddForm></AddForm>
+        <Navbar></Navbar>
+        <Board></Board>
       </boardContext.Provider>
     </div>
   );

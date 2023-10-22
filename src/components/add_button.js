@@ -5,7 +5,7 @@ export default function AddButton(){
     const [formOpen, setFormOpen] = useState(false); 
 
     function onClick(){
-        
+        console.log("Hello world"); 
     }
 
     return (
