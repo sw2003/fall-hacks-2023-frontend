@@ -7,6 +7,9 @@ import AddForm from './components/addForm';
 
 export const boardContext = createContext(null);
 
+import './App.css';
+
+
 function App() {
   const [ boardData, setBoardData ] = useState([
     [
@@ -28,13 +31,13 @@ function App() {
   const [createWindow, setCreateWindow] = useState(false); 
 
   return (
-    <>
+    <div className="background">
       <boardContext.Provider value={[boardData, createWindow, setCreateWindow]}>
         <AddForm></AddForm>
         <Navbar></Navbar>
         <Board></Board>
       </boardContext.Provider>
-    </>
+    </div>
   );
 }
 

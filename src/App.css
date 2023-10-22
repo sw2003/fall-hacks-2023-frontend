@@ -1,0 +1,8 @@
+.background{
+    height: 100%;
+    min-height: 800px;
+    background-image: url(./assets/bg5.jpg);
+    background-size: auto 108%;
+    background-position: center;
+    opacity: 1;
+}
