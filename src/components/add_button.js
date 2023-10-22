@@ -14,8 +14,8 @@ export default function AddButton(){
     }
 
     return (
-        <div className='flex gap-2 items-center w-16 p-1 bg-blue-500 text-white rounded cursor-pointer hover:bg-blue-400 transition-all' onClick={onClick}>
-            <span className='ml-2'>Add</span>
+        <div className='flex gap-2 items-center w-16 h-8 pl-2 bg-blue-500 text-white rounded cursor-pointer hover:bg-blue-400 transition-all' onClick={onClick}>
+            <span>Add</span>
 
             <IoAddCircleOutline></IoAddCircleOutline>
         </div>
