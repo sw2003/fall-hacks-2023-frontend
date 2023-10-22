@@ -6,7 +6,97 @@ import redLeaf from '../assets/red_leaf.jpg'
 import greenLeaf from '../assets/green_leaf.jpg'
 import yellowLeaf from '../assets/yellow_leaf.jpg'
 
-export default function Board(){
+const mockapi = {
+    "retroboard_id": 1,
+    "title": "Our Restrospect Board",
+    "well_column": [
+        {
+            "task_id": 1,
+            "content": "well done guys!",
+            "thumbup_count": 2,
+            "comments": [
+                {
+                    "comment_id": 1,
+                    "content": "Agree"
+                }
+            ]
+        },
+        {
+            "task_id": 4,
+            "content": "well done guys!",
+            "thumbup_count": 0,
+            "comments": [
+                {
+                    "comment_id": 1,
+                    "content": "Agree"
+                }
+            ]
+        }
+    ],
+    "improve_column": [
+        {
+            "task_id": 2,
+            "content": "not well guys!",
+            "thumbup_count": 3,
+            "comments": [
+                {
+                    "comment_id": 1,
+                    "content": "Disagree"
+                }
+            ]
+        },
+        {
+            "task_id": 5,
+            "content": "not well guys!",
+            "thumbup_count": 3,
+            "comments": [
+                {
+                    "comment_id": 1,
+                    "content": "Disagree"
+                }
+            ]
+        }
+    ],
+    "action_column": [
+        {
+            "task_id": 3,
+            "content": "do some action!",
+            "thumbup_count": 0,
+            "comments": [
+                {
+                    "comment_id": 21,
+                    "content": "No"
+                }
+            ]
+        },
+        {
+            "task_id": 6,
+            "content": "do some action!",
+            "thumbup_count": 10,
+            "comments": [
+                {
+                    "comment_id": 22,
+                    "content": "No"
+                }
+            ]
+        },
+        {
+            "task_id": 7,
+            "content": "do some action!",
+            "thumbup_count": 4,
+            "comments": [
+                {
+                    "comment_id": 23,
+                    "content": "No"
+                }
+            ]
+        }
+    ]
+}
+
+export default function Board() {
+    const [openComments, setOpenComments] = useState(false);
+    const [comment, setComment] = useState(''); 
 
     const styles = {
         column: {
@@ -14,99 +104,14 @@ export default function Board(){
             width: "30%"
         }
     }
-    const mockapi = {
-        "retroboard_id": 1,
-        "title": "Our Restrospect Board",
-        "well_column": [
-            {
-                "task_id": 1,
-                "content": "well done guys!",
-                "thumbup_count": 2,
-                "comments": [
-                    {
-                        "comment_id": 1,
-                        "content": "Agree"
-                    }
-                ]
-            },
-            {
-                "task_id": 4,
-                "content": "well done guys!",
-                "thumbup_count": 0,
-                "comments": [
-                    {
-                        "comment_id": 1,
-                        "content": "Agree"
-                    }
-                ]
-            }
-        ],
-        "improve_column": [
-            {
-                "task_id": 2,
-                "content": "not well guys!",
-                "thumbup_count": 3,
-                "comments": [
-                    {
-                        "comment_id": 1,
-                        "content": "Disagree"
-                    }
-                ]
-            },
-            {
-                "task_id": 5,
-                "content": "not well guys!",
-                "thumbup_count": 3,
-                "comments": [
-                    {
-                        "comment_id": 1,
-                        "content": "Disagree"
-                    }
-                ]
-            }
-        ],
-        "action_column": [
-            {
-                "task_id": 3,
-                "content": "do some action!",
-                "thumbup_count": 0,
-                "comments": [
-                    {
-                    "comment_id": 21,
-                    "content": "No"
-                    }
-                ]
-            },
-            {
-                "task_id": 6,
-                "content": "do some action!",
-                "thumbup_count": 10,
-                "comments": [
-                    {
-                    "comment_id": 22,
-                    "content": "No"
-                    }
-                ]
-            },
-            {
-                "task_id": 7,
-                "content": "do some action!",
-                "thumbup_count": 4,
-                "comments": [
-                    {
-                    "comment_id": 23,
-                    "content": "No"
-                    }
-                ]
-            }
-        ]
-    }
+
 
     const [tasks, setTasks] = useState({
         well_column: [],
         improve_column: [],
         action_column: []
     })
+
 
     // useEffect(() => {
     //     axios
@@ -121,24 +126,24 @@ export default function Board(){
 
     useEffect(() => {
         setTasks({
-            well_column: mockapi.well_column,  
+            well_column: mockapi.well_column,
             improve_column: mockapi.improve_column,
             action_column: mockapi.action_column
         })
     }, [])
 
-    useEffect(()=> {
+    useEffect(() => {
         console.log(tasks.well_column[0])
     })
 
     const thumbsup = (task_id) => {
         axios
             .put(`/task/${task_id}/add_thumbup`)
-            .then((res) => window.location.href='/')
+            .then((res) => window.location.href = '/')
     }
 
     const showComment = (task_id) => {
-
+        setOpenComments(!openComments);
     }
 
     const mapColumn = (column) => {
@@ -166,13 +171,21 @@ export default function Board(){
         ))
     }
 
+    function onChange(e){
+        setComment(e.target.value); 
+    }
+
+    function onSubmit(e){
+
+    }
+
     return (
         <>
-            <main className='flex justify-center w-3/4 ml-48 mt-8'>
+            <main className='flex justify-center w-3/4 mt-8 mx-auto'>
                 <section style={styles.column} className='border-2 rounded-lg bg-white'>
                     <h1 className='ml-8 mt-4 font-bold'>
-                        Went Well 
-                        <img src={greenLeaf} alt='logo' className="ml-1 h-6 inline"/>
+                        Went Well
+                        <img src={greenLeaf} alt='logo' className="ml-1 h-6 inline" />
                     </h1>
                     <br></br>
                     <p className='ml-8 mb-2'>{mapColumn(tasks.well_column)}</p>
@@ -180,7 +193,7 @@ export default function Board(){
                 <section style={styles.column} className='border-2 rounded-lg bg-white'>
                     <h1 className='ml-8 mt-4 font-bold'>
                         To Improve
-                        <img src={yellowLeaf} alt='logo' className="ml-1 h-6 inline"/>
+                        <img src={yellowLeaf} alt='logo' className="ml-1 h-6 inline" />
                     </h1>
                     <br></br>
                     <p className='ml-8 mb-2'>{mapColumn(tasks.improve_column)}</p>
@@ -188,11 +201,26 @@ export default function Board(){
                 <section style={styles.column} className='border-2 rounded-lg bg-white'>
                     <h1 className='ml-8 mt-4 font-bold'>
                         Action Items
-                        <img src={redLeaf} alt='logo' className="ml-1 h-6 inline"/>
+                        <img src={redLeaf} alt='logo' className="ml-1 h-6 inline" />
                     </h1>
                     <br></br>
                     <p className='ml-8 mb-2'>{mapColumn(tasks.action_column)}</p>
                 </section>
+
+                {
+                    openComments && (
+                        <section style={styles.column} className='border-2 rounded-lg bg-white'>
+                            <h1 className='ml-8 mt-4 font-bold'>
+                                Add Comment
+                            </h1>
+                            <br></br>
+                            <input type="text" className='w-3/4 block mx-auto border border-black rounded' value={comment} onChange={onChange}/>
+                            <button className='w-3/4 mx-auto border border-white bg-blue-500 text-white rounded block my-2' onClick={onSubmit}>Submit</button>
+                        </section>
+                    )
+                }
+
+
             </main>
         </>
     )
