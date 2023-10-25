@@ -48,9 +48,6 @@ export default function AddForm() {
             return;
         }
 
-        console.log(content)
-        console.log(insightStatus)
-
         // parse col name -> col id
 
         var colID = 0;

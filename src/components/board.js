@@ -22,7 +22,7 @@ const mockapi = {
             ]
         },
         {
-            "task_id": 4,
+            "task_id": 2,
             "content": "well done guys!",
             "thumbup_count": 0,
             "comments": [
@@ -35,7 +35,7 @@ const mockapi = {
     ],
     "improve_column": [
         {
-            "task_id": 2,
+            "task_id": 3,
             "content": "not well guys!",
             "thumbup_count": 3,
             "comments": [
@@ -46,7 +46,7 @@ const mockapi = {
             ]
         },
         {
-            "task_id": 5,
+            "task_id": 4,
             "content": "not well guys!",
             "thumbup_count": 3,
             "comments": [
@@ -59,7 +59,7 @@ const mockapi = {
     ],
     "action_column": [
         {
-            "task_id": 3,
+            "task_id": 5,
             "content": "do some action!",
             "thumbup_count": 0,
             "comments": [
@@ -97,6 +97,7 @@ const mockapi = {
 export default function Board() {
     const [openComments, setOpenComments] = useState(false);
     const [comment, setComment] = useState(''); 
+    const [taskID, setTaskID] = useState(null);
 
     const styles = {
         column: {
@@ -132,10 +133,6 @@ export default function Board() {
         })
     }, [])
 
-    useEffect(() => {
-        console.log(tasks.well_column[0])
-    })
-
     const thumbsup = (task_id) => {
         axios
             .put(`/task/${task_id}/add_thumbup`)
@@ -144,6 +141,12 @@ export default function Board() {
 
     const showComment = (task_id) => {
         setOpenComments(!openComments);
+        if (!openComments){
+            setTaskID(task_id);
+        }
+        else{
+            setTaskID(null)
+        }
     }
 
     const mapColumn = (column) => {
@@ -175,8 +178,12 @@ export default function Board() {
         setComment(e.target.value); 
     }
 
-    function onSubmit(e){
+    function handleSubmit(e){
+        e.preventDefault();
 
+        axios
+            .post(`/1/${taskID}/`, comment)
+            .then((res) => window.location.href='/')
     }
 
     return (
@@ -214,8 +221,10 @@ export default function Board() {
                                 Add Comment
                             </h1>
                             <br></br>
-                            <input type="text" className='w-3/4 block mx-auto border border-black rounded' value={comment} onChange={onChange}/>
-                            <button className='w-3/4 mx-auto border border-white bg-blue-500 text-white rounded block my-2' onClick={onSubmit}>Submit</button>
+                            <form method="post" onSubmit={handleSubmit}>
+                                <input type="text" className='w-3/4 block mx-auto border border-black rounded' value={comment} onChange={onChange}/>
+                                <button type="submit" className='w-3/4 mx-auto border border-white bg-green-600 text-white rounded block my-2'>Submit</button>
+                            </form>
                         </section>
                     )
                 }
